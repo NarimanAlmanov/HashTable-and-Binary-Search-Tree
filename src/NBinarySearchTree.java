@@ -1,6 +1,4 @@
-import java.security.Key;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class NBinarySearchTree <K extends Comparable<K>, V>{
     private Node root;
@@ -13,10 +11,24 @@ public class NBinarySearchTree <K extends Comparable<K>, V>{
             this.val = val;
         }
     }
-    public void put(K key, V val) {}
+    public void put(K key, V val) {
+
+    }
+
+    private void put(Node node,K key, V val) {
+
+    }
 
     public V get(K key) {
-        return null;
+        return get(root, key);
+    }
+
+    private V get(Node node, K key){
+        if(node == null) return null;
+        int compareResult = key.compareTo(node.key);
+        if (compareResult < 0) return get(node.left, key);
+        else if (compareResult > 0) return get(node.right, key);
+        else return node.val;
     }
 
     public void delete(K key) {

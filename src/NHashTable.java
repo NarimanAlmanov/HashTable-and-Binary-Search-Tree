@@ -26,7 +26,7 @@ public class NHashTable <K, V>{
     public NHashTable(int M) {}
 
     private int hash(K key) {
-        return key.hashCode();
+        return key.hashCode()%M;
     }
 
     public void put(K key, V value) {}

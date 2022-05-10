@@ -12,11 +12,16 @@ public class NBinarySearchTree <K extends Comparable<K>, V>{
         }
     }
     public void put(K key, V val) {
-
+        root = put(root, key, val);
     }
 
-    private void put(Node node,K key, V val) {
-
+    private Node put(Node node,K key, V val) {
+        if(node == null) return new Node(key, val);
+        int compareResult = key.compareTo(node.key);
+        if (compareResult < 0) node.left = put(node.left, key, val);
+        else if (compareResult > 0) node.right = put(node.right, key, val);
+        else node.val = val;
+        return node;
     }
 
     public V get(K key) {
@@ -31,8 +36,35 @@ public class NBinarySearchTree <K extends Comparable<K>, V>{
         else return node.val;
     }
 
-    public void delete(K key) {
+    private Node min(Node node){
+        if (node.left == null) return node;
+        return min(node.left);
+    }
 
+    public void delete(K key) {
+        root = delete(root, key);
+    }
+
+    private Node deleteMin(Node node){
+        if (node.left == null) return node.right;
+        node.left = deleteMin(node.left);
+        return node;
+    }
+
+    private Node delete(Node node, K key){
+        if (node == null) return null;
+        int compareResult = key.compareTo(node.key);
+        if(compareResult < 0) node.left = delete(node.left, key);
+        else if(compareResult > 0) node.right = delete(node.right, key);
+        else {
+            if (node.right == null) return node.left;
+            if (node.left == null) return node.right;
+            Node _node = node;
+            node = min(_node.right);
+            node.right = deleteMin(_node.right);
+            node.left = _node.left;
+        }
+        return node;
     }
 
     public Iterable<K> iterator() {

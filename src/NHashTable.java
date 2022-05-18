@@ -119,6 +119,7 @@ public class NHashTable <K, V>{
 
     public K getKey(V value) {
         for (int i = 0; i < M; i++){
+            if(chainArray[i] == null) continue;
             if(chainArray[i].next == null){
                 if(chainArray[i].value.equals(value)) return chainArray[i].key;
             }
@@ -137,10 +138,11 @@ public class NHashTable <K, V>{
             if(chainArray[i] == null) continue;
             HashNode _node = chainArray[i];
             while (true){
-                System.out.println(_node.toString());
+                System.out.print(_node.toString() + "~>");
                 if(_node.next == null) break;
                 _node = _node.next;
             }
+            System.out.println();
         }
     }
 }

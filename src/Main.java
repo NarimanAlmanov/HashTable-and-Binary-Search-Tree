@@ -7,9 +7,11 @@ public class Main {
         dictionary.put("Candy", "Конфета");
         dictionary.put("Deep", "Глубокий");
         dictionary.put("Excellent", "Отличный");
+        dictionary.print();
         System.out.println(dictionary.contains("Отличный"));
         System.out.println(dictionary.contains("Яблоко"));
         System.out.println(dictionary.contains("Лилия"));
+        System.out.println(dictionary.getKey("Отличный"));
     }
     public static void showInfo(){
         System.out.println("#==================================================#");
